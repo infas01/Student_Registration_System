@@ -1,0 +1,236 @@
+﻿<Window x:Class="SRS.Views.AdminLoginWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SRS.Views" 
+        xmlns:local1="clr-namespace:SRS.ViewModels"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="AdminLoginWindowView" 
+        Height="450" Width="800"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        MouseDown="Move_Window">
+
+    <Border CornerRadius="25">
+        <Border.Background>
+<!--
+            <ImageBrush ImageSource="C:\Users\Infas_NM\Desktop\GUI_Project\GUI_Project\SRS\SRS\Images\Login_Background.jpg"
+                            Stretch="Fill"/>
+-->
+            <LinearGradientBrush StartPoint="0 1" EndPoint="0.8 0">
+                <GradientStop Color="#212121" Offset="0"/>
+                <GradientStop Color="#031544" Offset="0.5"/>
+                <GradientStop Color="#1C3CA1" Offset="0.5"/>
+                <GradientStop Color="#031544" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Border CornerRadius="25"
+                Opacity="0.6">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5 0" EndPoint="1 1">
+                    <GradientStop Color="#212121" Offset="0"/>
+                    <GradientStop Color="#031544" Offset="0.5"/>
+                    <GradientStop Color="#1C3CA1" Offset="0.5"/>
+                    <GradientStop Color="#031544" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="410"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+
+                    <TextBlock Text="ADMIN LOGIN"
+                               Foreground="#EEEEEE"
+                               FontSize="15"
+                               FontFamily="TimesNewRoman"
+                               VerticalAlignment="Center"
+                               Margin="20 18 0 0"/>
+                    <Button Style="{StaticResource CloseButton}"
+                            Click="CloseButton_Click"
+                            Margin="740 15 0 0"
+                            ToolTip="Close">
+
+                        <Icon:PackIconMaterial  Kind="CloseCircle"
+                                                Width="20" 
+                                                Height="20"/>
+                    </Button>
+
+                </Grid>
+
+
+                <Border CornerRadius="25"
+                        Background="#031544"
+                        Height="350"
+                        Width="350"
+                        Grid.Row="1">
+                    <StackPanel Orientation="Vertical"
+                                VerticalAlignment="Center"
+                                Width="350"
+                                Height="350">
+
+
+
+                        <TextBlock Text="LOGIN"
+                                   Style="{StaticResource normalText}"
+                                   Foreground="White"
+                                   FontFamily="Cambria"
+                                   FontWeight="ExtraBold"
+                                   FontSize="20"/>
+
+                        <TextBlock Text="Username"
+                                   Style="{StaticResource normalText}"
+                                   TextAlignment="Left"
+                                   FontFamily="Arial"
+                                   Margin="10 20 10 0"/>
+
+                        <Border Margin="5 0 10 0"
+                                BorderBrush="Blue" BorderThickness="0"
+                                CornerRadius="5">
+                            <Grid Margin="5 5 5 5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="300"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Icon:PackIconMaterial Kind="Account"
+                                                       Foreground="White"
+                                                       Grid.Column="0"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"/>
+                                <!--We need to update the username every time the textbox property changes-->
+                                <TextBox x:Name="typeUsername"
+                                         Text ="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                                         FontSize="15"
+                                         
+                                         Background="Transparent"
+                                         Foreground="White"
+                                         CaretBrush="NavajoWhite"
+                                         BorderThickness="0 0 0 3"
+                                         Height="25"
+                                         VerticalContentAlignment="Center"
+                                         Margin="10 5 10 0"
+                                         Grid.Column="1"/>
+                            </Grid>
+                        </Border>
+
+                        <TextBlock Text="Password"
+                                   Style="{StaticResource normalText}"
+                                   TextAlignment="Left"
+                                   FontFamily="Arial"
+                                   Margin="10 5 10 0"/>
+
+                        <Border Margin="5 0 10 0"
+                                BorderBrush="Blue" BorderThickness="0"
+                                CornerRadius="5">
+                            <Grid Margin="5 5 5 5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="300"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Icon:PackIconMaterial Kind="Lock"
+                                                       Foreground="White"
+                                                       Height="20"
+                                                       Grid.Column="0"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"/>
+
+
+                                <PasswordBox x:Name="typePassword"
+                                             FontSize="15"
+                                             Background="Transparent"
+                                             Foreground="White"
+                                             CaretBrush="NavajoWhite"
+                                             BorderThickness="0 0 0 3"
+                                             Height="25"
+                                             VerticalContentAlignment="Center"
+                                             Margin="10 5 10 5"
+                                             Grid.Column="1"/>
+
+                                <!--Here we can't use the binding property because of the security reason.
+                            Already we set the password as a SecureString. So, we create a CustomControls-->
+                            </Grid>
+                        </Border>
+
+                        <!-- If the user input password is incorrect, an error message will be displayed.-->
+                        <!--
+                    <TextBlock Text="{Binding ErrorMessage}" 
+                                   Margin="10 10 10 0"
+                                   VerticalAlignment="Center"
+                                   FontSize="15"
+                                   FontWeight="ExtraBold"
+                                   Foreground="Yellow"
+                                   HorizontalAlignment="Left"
+                                   TextWrapping="Wrap"/>
+                    -->
+
+                        <Button Content="LOGIN"
+                                Style="{StaticResource subMainButton}"
+                                Cursor="Hand"
+                                Click="Login_Click"
+                                Margin="0 10 0 10"/>
+                        <!--
+                    <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="10 5 10 5">
+                        
+                        <TextBlock Text="Forgot Password"
+                                   Foreground="NavajoWhite"
+                                   TextAlignment="Center"
+                                   FontWeight="Medium"
+                                   FontSize="12"
+                                   Margin="0"
+                                   Cursor="Hand"/>
+                        <TextBlock Text="   Reset"
+                                   Foreground="NavajoWhite"
+                                   TextAlignment="Center"
+                                   FontWeight="Bold"
+                                   FontSize="12"
+                                   Margin="0"
+                                   Cursor="Hand"/>
+                   
+                    </StackPanel>
+                     -->
+                        <Button Content="BACK"
+                                Style="{StaticResource subMainButton}"
+                                Cursor="Hand"
+                                Click="Back_Click"
+                                Margin="0"/>
+                        <!--
+                    <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="10 10 10 10">
+                        <TextBlock Text="Forgot Password?"
+                                   Foreground="NavajoWhite"
+                                   TextAlignment="Center"
+                                   FontWeight="Medium"
+                                   FontSize="12"
+                                   Margin="10 5 10 5"
+                                   Cursor="Hand"/>
+                        <TextBlock Text="Reset"
+                                   Foreground="NavajoWhite"
+                                   TextAlignment="Center"
+                                   FontWeight="Bold"
+                                   FontSize="12"
+                                   Margin="0 5 10 5"
+                                   Cursor="Hand"/>
+                    </StackPanel>
+                -->
+
+                    </StackPanel>
+
+                </Border>
+            </Grid>
+        </Border>
+    </Border>
+
+
+</Window>

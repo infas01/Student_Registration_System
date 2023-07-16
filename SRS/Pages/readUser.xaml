@@ -1,0 +1,58 @@
+﻿<Page x:Class="SRS.Pages.readUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SRS.Pages"
+      xmlns:local1="clr-namespace:SRS.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="520" 
+      d:DesignWidth="500"
+      Title="readUser">
+
+    <Page.DataContext>
+        <local1:ViewModel/>
+    </Page.DataContext>
+    <Grid>
+        <Border BorderThickness="1.5"
+        BorderBrush="DarkBlue"
+        CornerRadius="25">
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
+        </Border>
+    
+        <Grid Background="Transparent" Margin="0,0,1,18">
+
+            <DataGrid   x:Name="UsersDataGridView"
+                        ItemsSource="{Binding UserMs}"
+                        ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
+                        RowStyle="{DynamicResource DataGridRowStyle}"  
+                        CellStyle="{DynamicResource DataGridCellStyle}" 
+                        Style="{DynamicResource DataGridStyle}"
+                        Margin="10 20 10 10">
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="User Id" 
+                                        Binding="{Binding UserId}" 
+                                        IsReadOnly="True" 
+                                        Width="*"/>
+
+                    <DataGridTextColumn Header="Username" 
+                                        Binding="{Binding Username}"
+                                        IsReadOnly="True" 
+                                        Width="*"/>
+
+                    <DataGridTextColumn Header="Password"
+                                        Binding="{Binding Password}"
+                                        IsReadOnly="True"
+                                        Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </Grid>
+
+
+</Page>

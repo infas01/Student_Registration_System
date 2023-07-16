@@ -1,0 +1,220 @@
+﻿<Window x:Class="SRS.Views.UserDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SRS.Views"
+        xmlns:local1="clr-namespace:SRS.ViewModels"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="UserDetailsWindow"
+        Height="720" Width="1080"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseDown="Move_Window">
+
+    <Window.DataContext>
+        <local1:ViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+
+    <Border CornerRadius="25"
+            MouseDown="Border_MouseDown">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                <GradientStop Color="#031544" Offset="0"/>
+                <GradientStop Color="#1C3CA1" Offset="0.5"/>
+                <GradientStop Color="#031544" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid Margin="30 20 20 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="440"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="825"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="C:\Users\Infas_NM\Desktop\Desktop_UI_Project\Desktop_UI\Desktop_UI\Images\LOGO_OF_RUHUNA.png"
+                           Grid.Column="0"
+                           Width="100"
+                           Height="100"
+                           Margin="0 5 0 0"/>
+
+                    <StackPanel Grid.Column="1"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+
+                        <TextBlock Text="Faculty of Engineering"
+                                   FontSize="40"
+                                   FontWeight="SemiBold"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="University of Ruhuna"
+                                   FontSize="32" 
+                                   FontWeight="DemiBold"
+                                   Foreground="White" 
+                                   HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+
+                <Separator Grid.Row="1"
+                           Height="4"
+                           Background="Yellow"
+                           Margin="10 5 0 10"/>
+
+                <Grid Grid.Row="2">
+
+                    <TextBlock Text= "{Binding Day}"
+                           FontSize="20" 
+                           FontWeight="SemiBold" 
+                           Foreground="White" 
+                           Margin="20 0 0 5"
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Center"/>
+
+                    <Button Style="{StaticResource LogOutButton}"
+                            Width="70"
+                            Height="30"
+                            Click="LogoutButton_Click"
+                            Margin="0 0 10 10"
+                            ToolTip="Logout"
+                            HorizontalAlignment="Right"
+                            BorderThickness="0">
+                        <Button.RenderTransform>
+                            <ScaleTransform x:Name="ButtonScaleTransform" ScaleX="1" ScaleY="1"/>
+                        </Button.RenderTransform>
+
+                        <Icon:PackIconMaterial Kind="LogoutVariant" 
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Width="20" 
+                                               Height="20"/>
+                    </Button>
+
+                </Grid>
+
+                <Border  Background="white"
+                         Grid.Row="3"
+                         CornerRadius="25">
+                    <Grid>
+                        <!--
+                        <TextBlock  x:Name="wlcmtext" 
+                                    TextWrapping="WrapWithOverflow"  
+                                    Foreground="Black"
+                                    FontSize="20"
+                                    Text="choose the option below to perform action" 
+                                    FontFamily="Old English Text MT" 
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Center"/>
+                        -->
+                        <Frame  Name="userCRUD" 
+                                NavigationUIVisibility="Hidden"
+                                Margin="150 20 150 20"
+                                Source="/SRS;component/Pages/CreateStudent.xaml"/>
+
+                    </Grid>
+                </Border>
+                <Grid Grid.Row="4">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0 5 0 0">
+                        <Button Style="{StaticResource AddButton}"
+                                Click="CreateButton_Click"
+                                Margin="0 5 25 5"
+                                ToolTip="Create">
+
+                            <Icon:PackIconMaterial Kind="Plus" 
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Width="20" 
+                                                   Height="20"/>
+                        </Button>
+                        <Button Style="{StaticResource ReadButton}"
+                                Command="{Binding ReadTheUserCommand}"
+                                Click="ReadButton_Click"
+                                Margin="0 5 25 5"
+                                ToolTip="Read">
+
+                            <Icon:PackIconMaterial Kind="Read" 
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Width="20" 
+                                                   Height="20"/>
+                        </Button>
+
+                        <Button Style="{StaticResource UpdateButton}"
+                                Click="UpdateButton_Click"
+                                Margin="0 5 25 5"
+                                ToolTip="Update">
+
+                            <Icon:PackIconMaterial Kind="Update" 
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Width="20" 
+                                                   Height="20"/>
+                        </Button>
+
+                        <Button Style="{StaticResource DeleteButton}"
+                                Click="DeleteButton_Click"
+                                Margin="0 5 25 5"
+                                ToolTip="Delete">
+
+                            <Icon:PackIconMaterial Kind="DeleteOutline" 
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Width="20" 
+                                                   Height="20"/>
+                        </Button>
+                        <!--<ToggleButton Background="Transparent"
+                                      Click="ToggleButton_Click"
+                                      x:Name="Menu"
+                                      Foreground="White"
+                                      BorderThickness="0"
+                                Margin="0 5 25 5"
+                                ToolTip="Module">
+
+                            <Icon:PackIconMaterial Kind="Menu" 
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Width="20" 
+                                                   Height="20"/>
+                        </ToggleButton>
+                        <Button Style="{StaticResource DeleteButton}"
+                                x:Name="AddModule"
+                                Content="1"
+                                Visibility="Collapsed"
+                                Margin="0 5 25 5"
+                                ToolTip="Delete">
+                        </Button>
+                        <Button Style="{StaticResource DeleteButton}"
+                                x:Name="UpdateModule"
+                                Content="2"
+                                Visibility="Collapsed"
+                                Margin="0 5 25 5"
+                                ToolTip="Delete">
+                        </Button>-->
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

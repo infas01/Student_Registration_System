@@ -1,0 +1,152 @@
+﻿<Page x:Class="SRS.Pages.CreateStudent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SRS.Pages" xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:local1="clr-namespace:SRS.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" 
+      d:DesignWidth="700"
+      Title="CreateStudent">
+
+    <Page.DataContext>
+        <local1:ViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Border BorderThickness="1.5"
+        BorderBrush="DarkBlue"
+        CornerRadius="25">
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
+        </Border>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical"
+                        Margin="10 20 10 10"
+                        Grid.Column="0">
+
+                <TextBlock  Text="First Name : "
+                            Margin="10 5 10 15"
+                            Height="25"
+                            Style="{StaticResource normalText}"
+                            Foreground="Black"
+                            HorizontalAlignment="Left"/>
+                <TextBlock  Text="Last Name : "
+                            Height="25"
+                            Margin="10 5 10 15"
+                            Foreground="Black"
+                            Style="{StaticResource normalText}"
+                            HorizontalAlignment="Left"/>
+                <TextBlock  Text="Email : "
+                            Height="25"
+                        Margin="10 5 10 15"
+                            Foreground="Black"
+                        Style="{StaticResource normalText}"
+                            HorizontalAlignment="Left"/>
+                <TextBlock  Text="Date of Birth : "
+                        Margin="10 5 10 15"
+                            Height="25"
+                            Foreground="Black"
+                        Style="{StaticResource normalText}"
+                            HorizontalAlignment="Left"/>
+                <TextBlock  Text="Phone Number : "
+                        Margin="10 5 10 15"
+                            Height="25"
+                            Foreground="Black"
+                        Style="{StaticResource normalText}"
+                            HorizontalAlignment="Left"/>
+                <TextBlock  Text="Username : "
+                        Margin="10 5 10 15"
+                            Height="25"
+                            Foreground="Black"
+                        Style="{StaticResource normalText}"
+                            HorizontalAlignment="Left"/>
+                <TextBlock  Text="Password : "
+                        Margin="10 5 10 15"
+                            Height="25"
+                            Foreground="Black"
+                        Style="{StaticResource normalText}"
+                            HorizontalAlignment="Left"/>
+                <TextBlock  Text="GPA : "
+                        Margin="10 5 10 15"
+                            Height="25"
+                                Foreground="Black"
+                        Style="{StaticResource normalText}"
+                            HorizontalAlignment="Left"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Vertical"
+                        Margin="10 20 10 10">
+                <TextBox Margin="10 5 10 15"
+                         Text ="{Binding Firstname, UpdateSourceTrigger=PropertyChanged}"
+                         Height="25"
+                         Width="200"
+                         Background="Transparent"/>
+                <TextBox Margin="10 5 10 15"
+                         Text ="{Binding Lastname, UpdateSourceTrigger=PropertyChanged}"
+                         Height="25"
+                         Width="200"
+                         Background="Transparent"/>
+                <TextBox Margin="10 5 10 15"
+                         Text ="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                         Height="25"
+                         Width="200"
+                         Background="Transparent"/>
+                <TextBox Margin="10 5 10 15"
+                         Text ="{Binding Dateofbirth, UpdateSourceTrigger=PropertyChanged}"
+                         Height="25"
+                         Width="200"
+                         Background="Transparent"/>
+                <TextBox Margin="10 5 10 15"
+                         Text ="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged}"
+                         Height="25"
+                         Width="200"
+                         Background="Transparent"/>
+                <TextBox Margin="10 5 10 15"
+                         Text ="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                         Height="25"
+                         Width="200"
+                         Background="Transparent"/>
+                <TextBox Margin="10 5 10 15"
+                         Text ="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                         Height="25"
+                         Width="200"
+                         Background="Transparent"/>
+                <TextBox Margin="10 5 10 15"
+                        Height="25"
+                        Width="200"
+                        Background="Transparent"
+                         IsReadOnly="True"
+                         Text="{Binding Gpa, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+            </StackPanel>
+        
+        
+            <StackPanel Grid.Column="2"
+                        Margin="50 100 50 100">
+                <Button Content="Add Modules"
+                        Style="{StaticResource subMainButton}"
+                        Click="AddModuleButton_Click"
+                        />
+                <Button Content="Update Modules"
+                        Style="{StaticResource subMainButton}"
+                        Click="UpdateModuleButton_Click_1"
+                        />
+                <Button Content="Done"
+                        Style="{StaticResource subMainButton}"
+                        Command="{Binding AddTheStudentCommand}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,75 @@
+﻿<Page x:Class="SRS.Pages.deleteUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SRS.Pages"
+      xmlns:local1="clr-namespace:SRS.ViewModels" 
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      mc:Ignorable="d" 
+      d:DesignHeight="520" 
+      d:DesignWidth="500"
+      Title="deleteUser">
+
+    <Page.DataContext>
+        <local1:ViewModel/>
+    </Page.DataContext>
+    <Grid>
+    <Border BorderThickness="1.5"
+        BorderBrush="DarkBlue"
+        CornerRadius="25">
+        <Border.Effect>
+            <DropShadowEffect/>
+        </Border.Effect>
+    </Border>
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid   Grid.Row="0"
+                    x:Name="StudentsDataGridView"
+                    ItemsSource="{Binding UserMs}" 
+                    SelectedItem="{Binding UserList, UpdateSourceTrigger=PropertyChanged}" 
+                    ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
+                    RowStyle="{DynamicResource DataGridRowStyle}"  
+                    CellStyle="{DynamicResource DataGridCellStyle}" 
+                    Style="{DynamicResource DataGridStyle}"
+                    Margin="10 20 10 10">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="User Id"
+                                            CanUserResize="False" 
+                                            Width="auto" 
+                                            Binding="{Binding UserId}"
+                                            IsReadOnly="True"/>
+                
+                <DataGridTextColumn Header="Username"
+                                            CanUserResize="False" 
+                                            Width="auto" 
+                                            Binding="{Binding Username}"
+                                            IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Password" 
+                                            Binding="{Binding Password}"
+                                            Width="auto"
+                                            IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="1">
+            <Button Command="{Binding DeleteTheUserCommand }" 
+                    Content="Delete" 
+                    Style="{StaticResource mainButton}"
+                    Margin="0 10 0 10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="120">
+
+            </Button>
+        </Grid>
+    </Grid>
+    </Grid>
+</Page>
